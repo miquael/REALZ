@@ -18,4 +18,5 @@ REALZ:
   - Download the REALZ source code
   - cd into REALZ directory
   - hz serve --dev
-  - Open http://127.0.0.1:8181 
+  - Open http://127.0.0.1:8181
+  
