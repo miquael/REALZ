@@ -18,7 +18,44 @@
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v2.6.0/dist/aframe-extras.min.js"></script>
     <script src="https://rawgit.com/ngokevin/kframe/master/dist/kframe.min.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
 
+    <!-- for menu overlay -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+          .intro-overlay {
+            z-index: 1;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            max-width: 280px;
+            box-sizing: border-box;
+            padding: 1.5em;
+            color: #FFF;
+            background: #222;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+          }
+          .menu-overlay {
+            z-index: 99999;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            box-sizing: border-box;
+            padding: 1.5em;
+            width: 60px;
+            height: 60px;
+            padding-bottom: 0px;
+            background: rgba(0, 0, 0, 0.5) url(./images/hamburger-white.png) center no-repeat;
+            background-size: 40px 40px;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+          }
+          .menu-overlay:hover {
+            background: rgba(0, 0, 0, 0.2) url(./images/hamburger-white.png) center no-repeat;
+            background-size: 40px 40px;
+          }
+    </style>
   </head>
   <body>
 
@@ -56,7 +93,7 @@
 
         <!-- SCENE ///////////////////////////////////////////////////////////// -->
 
-        <!-- CAM :::  -->
+        <!-- CAM :::::::::::::::::::::: -->
         <a-entity   camera
                     position="0 1 0"
                     kinematic-body
@@ -112,7 +149,7 @@
                    repeat="indefinite">
                 </a-animation>
             </a-entity>
-            <!--<a-entity template="src: #standard-rotation" data-roto="360 360 360"></a-entity> ??? -->
+
             <a-animation attribute="rotation"
                dur="10000"
                fill="forwards"
@@ -130,6 +167,32 @@
         <a-grid static-body position="0 -1 0" depth="128" width="128"></a-grid>
 
     </a-scene>
+
+    <!-- PAGE UI /////////////////////////////////////////////////////////////// -->
+    <div id="bloc" class="intro-overlay">
+          <h4>REALZ Horizon</h4>
+          <p>This app ...</p>
+          <p><a onclick="loadButton()" class="btn btn-success">Button 1</a></p>
+          <p><a onclick="hide()" class="btn btn-success">Button 2</a></p>
+
+    </div>
+
+    <a onclick="show()"><div class="menu-overlay btn btn-outline-secondary"></div></a>
+
+    <script type="text/javascript">
+          function hide() {
+              $("#bloc").removeClass('intro-overlay');
+          }
+          function loadButton() {
+          }
+          function show() {
+             $("#bloc").toggleClass('intro-overlay');
+          }
+
+          if (screen.width <= 699) {
+            $("#bloc").removeClass('intro-overlay');
+          }
+    </script>
 
   </body>
 </html>
