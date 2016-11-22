@@ -41,9 +41,9 @@ To fix, first show running processes:
 
     lsof -i tcp:8181
 
-Then kill process, where <PID#> is the process PID (example, 8875):
+Then kill processes, where [PID#] is the process PID (example, 8875):
 
-    kill -9 <PID#>
+    kill -9 [PID#]
 
 Then, restart:
 
