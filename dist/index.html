@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>::: REALZ :::</title>
     <meta name="description" content="REALZ">
+
+    <!-- Horizon -->
     <script src="/horizon/horizon.js"></script>
-    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
     <script>
       var horizon = Horizon();
       horizon.onReady(function() {
@@ -13,16 +14,122 @@
       });
       horizon.connect();
     </script>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v2.6.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/kframe/master/dist/kframe.min.js"></script>
+
   </head>
   <body>
-   <marquee direction="left"><h1></h1></marquee>
 
    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+       <!-- Asset management system //////////////////////////////////////// -->
+       <a-assets>
+          <!-- voxy box template -->
+            <script id="voxy-box" type="text/nunjucks">
+                <a-box  class="box"
+                        depth="0.5"
+                        height="0.5"
+                        width="0.5"
+                        material="shader: flat; opacity: 0.6; color: {{ hex }}"
+                        event-set__3="_event: mouseenter; scale: 1.2 1.2 1; depth: 0.5; opacity: 0.8; color: #7766CC"
+                        event-set__4="_event: mouseleave; scale: 1 1 1">
+                </a-box>
+            </script>
+
+            <!-- voxy box plane template -->
+                <script id="voxy-box-plane" type="text/nunjucks">
+                    <a-entity  class="box-plane"
+                        <a-entity template="src: #voxy-box" position="0 0 0"    data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="-1 0 0"   data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="-1 -1 0"  data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="-1 1 0"   data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="0 -1 0"   data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="0 1 0"    data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="1 -1 0"   data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="1 0 0"    data-hex="#FF6600"></a-entity>
+                        <a-entity template="src: #voxy-box" position="1 1 0"    data-hex="#FF6600"></a-entity>
+                    </a-entity>
+                </script>
+        </a-assets>
+
+        <!-- SCENE ///////////////////////////////////////////////////////////// -->
+
+        <!-- CAM :::  -->
+        <a-entity   camera
+                    position="0 1 0"
+                    kinematic-body
+                    universal-controls
+                    jump-ability
+                    acceleration="100"
+                    easing="200"
+                    fly="true">
+
+        <a-cursor id="cursor" color="#2E3A87">
+            <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
+        </a-entity>
+
+        <!-- UI ///////////////////////////////////////////////////////////// -->
+        <a-box position="-1.5 0.5 -3" rotation="0 45 0" opacity="1" color="#336699"
+               depth="0.25"
+               height="1"
+               width="1">
+        </a-box>
+
+        <!-- VOXY BOX CUBE -->
+        <a-entity id="voxy-box-set" position="0 3 -7" scale="1 1 1">
+
+            <a-entity template="src: #voxy-box-plane" position="0 0 -1">
+                <a-animation attribute="rotation"
+                   delay="13000"
+                   dur="3000"
+                   to="0 0 360"
+                   direction="reverse"
+                   easing="ease-in-out"
+                   repeat="indefinite">
+                </a-animation>
+            </a-entity>
+            <a-entity template="src: #voxy-box-plane" position="0 0 0">
+                <a-animation attribute="rotation"
+                   delay="10000"
+                   dur="3000"
+                   to="0 0 360"
+                   direction="normal"
+                   easing="ease-in-out"
+                   repeat="indefinite">
+                </a-animation>
+            </a-entity>
+            <a-entity template="src: #voxy-box-plane" position="0 0 1">
+                <a-animation attribute="rotation"
+                   delay="16000"
+                   dur="3000"
+                   to="0 0 360"
+                   direction="reverse"
+                   easing="ease-in-out"
+                   repeat="indefinite">
+                </a-animation>
+            </a-entity>
+            <!--<a-entity template="src: #standard-rotation" data-roto="360 360 360"></a-entity> ??? -->
+            <a-animation attribute="rotation"
+               dur="10000"
+               fill="forwards"
+               to="360 360 360"
+               easing="linear"
+               repeat="indefinite">
+            </a-animation>
+
+        </a-entity>
+
+        <!-- Sky -->
+        <a-sky color="#ECECEC"></a-sky>
+
+        <!-- Ground -->
+        <a-grid static-body position="0 -1 0" depth="128" width="128"></a-grid>
+
     </a-scene>
+
   </body>
 </html>
