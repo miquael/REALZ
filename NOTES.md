@@ -1,4 +1,4 @@
-# REAL NOTES
+# REALZ NOTES
 
 use:
 

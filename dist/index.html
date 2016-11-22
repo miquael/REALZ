@@ -66,30 +66,83 @@
 
        <!-- Asset Management System //////////////////////////////////////// -->
        <a-assets>
-          <!-- voxy box template -->
+
+            <!-- ui color pad -->
+            <script id="ui-color-pad" type="text/nunjucks">
+                <a-box class="box"
+                       depth="0.025"
+                       height="0.25"
+                       width="0.25"
+                       material="shader: flat; opacity: 0.6; color: {{ hex }}">
+                </a-box>
+            </script>
+
+            <!-- ui color pad set -->
+            <script id="ui-color-pad-set" type="text/nunjucks">
+                <a-entity template="src: #ui-color-pad" data-hex="#FF0000" position="-0.5 0 0"></a-entity>
+                <a-entity template="src: #ui-color-pad" data-hex="#00FF00" position="0 0 0"></a-entity>
+                <a-entity template="src: #ui-color-pad" data-hex="#0000FF" position="0.5 0 0"></a-entity>
+            </script>
+
+            <!-- ui arrow -->
+            <script id="ui-arrow" type="text/nunjucks">
+                <a-cone class="cone"
+                        radius-top="0"
+                        radius-bottom="0.12"
+                        height="0.25"
+                        material="shader: flat; opacity: 0.6; color: {{ hex }}">
+                </a-cone>
+            </script>
+
+            <!-- ui arrow set -->
+            <script id="ui-arrow-set" type="text/nunjucks">
+                <a-entity template="src: #ui-arrow" data-hex="#FF0000" position="-0.5 0 0"></a-entity>
+                <a-entity template="src: #ui-arrow" data-hex="#00FF00" position="0 0 0"></a-entity>
+                <a-entity template="src: #ui-arrow" data-hex="#0000FF" position="0.5 0 0"></a-entity>
+            </script>
+
+            <!-- ui mod -->
+            <script id="ui-mod" type="text/nunjucks">
+                <a-entity>
+                    <!-- color pads -->
+                    <a-entity position="0 0.5 0">
+                        <a-entity template="src: #ui-color-pad-set"></a-entity>
+                    </a-entity>
+                    <!-- arrows -->
+                    <a-entity position="0 0.1 0">
+                        <a-entity template="src: #ui-arrow-set"></a-entity>
+                    </a-entity>
+                    <!-- panel -->
+                    <a-box position="0 0.25 -0.3" color="#336699"
+                           depth="0.05" height="1" width="2">
+                    </a-box>
+                </a-entity>
+            </script>
+
+            <!-- voxy box template -->
             <script id="voxy-box" type="text/nunjucks">
-                <a-box  class="box"
-                        depth="0.5"
-                        height="0.5"
-                        width="0.5"
-                        material="shader: flat; opacity: 0.6; color: {{ hex }}"
-                        event-set__3="_event: mouseenter; scale: 1.2 1.2 1; depth: 0.5; opacity: 0.8; color: #7766CC"
-                        event-set__4="_event: mouseleave; scale: 1 1 1">
+                <a-box class="box"
+                       depth="0.5"
+                       height="0.5"
+                       width="0.5"
+                       material="shader: flat; opacity: 0.6; color: {{ hex }}"
+                       event-set__3="_event: mouseenter; scale: 1.2 1.2 1; depth: 0.5; opacity: 0.8; color: #AA33AA"
+                       event-set__4="_event: mouseleave; scale: 1 1 1">
                 </a-box>
             </script>
 
             <!-- voxy box plane template -->
             <script id="voxy-box-plane" type="text/nunjucks">
                 <a-entity  class="box-plane"
-                    <a-entity template="src: #voxy-box" position="0 0 0"    data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="-1 0 0"   data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="-1 -1 0"  data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="-1 1 0"   data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="0 -1 0"   data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="0 1 0"    data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="1 -1 0"   data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="1 0 0"    data-hex="#FF6600"></a-entity>
-                    <a-entity template="src: #voxy-box" position="1 1 0"    data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="0 0 0"    data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 0 0"   data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 -1 0"  data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 1 0"   data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="0 -1 0"   data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="0 1 0"    data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 -1 0"   data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 0 0"    data-hex="#FFFFFF"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 1 0"    data-hex="#FFFFFF"></a-entity>
                 </a-entity>
             </script>
         </a-assets>
@@ -112,15 +165,29 @@
         </a-entity>
 
         <!-- UI ///////////////////////////////////////////////////////////// -->
-        <a-box position="-2 0.5 -4" rotation="0 45 0" color="#336699"
-               depth="0.1" height="1" width="2">
-        </a-box>
-        <a-box position="2 0.5 -4" rotation="0 -45 0" color="#336699"
-               depth="0.1" height="1" width="2">
-        </a-box>
+
+
+        <!-- UI controls and displays -->
+
+        <!-- REALZ Text -->
+        <a-entity position="-0.75 0.65 -3.5" scale="2 2 1"
+            bmfont-text="width: 200; lineHeight: 42; color: white; opacity: 0.6; letterSpacing: 15; text: REALZ">
+        </a-entity>
+
+        <a-entity id="ui-mod-A" position="-2 0.5 -4" rotation="0 -35 0">
+            <a-entity template="src: #ui-mod"></a-entity>
+        </a-entity>
+
+        <a-entity id="ui-mod-B" position="2 0.5 -4" rotation="0 35 0">
+            <a-entity template="src: #ui-mod"></a-entity>
+        </a-entity>
+
+
+
+
 
         <!-- VOXY BOX CUBE -->
-        <a-entity id="voxy-box-set" position="0 3 -7" scale="1 1 1">
+        <a-entity id="voxy-box-set" position="0 4 -7" scale="1 1 1">
 
             <a-entity template="src: #voxy-box-plane" position="0 0 -1">
                 <a-animation attribute="rotation"
@@ -161,11 +228,6 @@
                repeat="indefinite">
             </a-animation>
 
-        </a-entity>
-
-        <!-- Text -->
-        <a-entity position="-0.75 0.5 -3.5" scale="2 2 1"
-                    bmfont-text="width: 200; lineHeight: 42; color: white; opacity: 0.6; letterSpacing: 15; text: REALZ">
         </a-entity>
 
         <!-- Environment ///////////////////////////////////////////////////////-->
