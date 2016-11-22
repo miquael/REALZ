@@ -28,22 +28,22 @@ Start Horizon server:
 
     hz serve --dev
 
-Open http://127.0.0.1:8181
+Open in web browser: http://127.0.0.1:8181
 
 
 ## Restarting
 
-When stopping the Horizon server, kill with control-Z (not control-C). When restarting, Horizon server, an error can occur:
+When stopping the Horizon server, kill with control-Z (not control-C). When restarting Horizon server, an error can occur:
 
     HTTP server: Error: listen EADDRINUSE 127.0.0.1:8181
 
-To fix, first do this to show running processes:
+To fix, first show running processes:
 
     lsof -i tcp:8181
 
-Then this, where [PID#] is the process PID (example, 8875):
+Then kill process, where <PID#> is the process PID (example, 8875):
 
-    kill -9 [PID#]
+    kill -9 <PID#>
 
 Then, restart:
 
