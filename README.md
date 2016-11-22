@@ -13,22 +13,22 @@ REALZ:
 
 ## Installation
 
-  - Install Horizon: http://horizon.io/install/
-    (this will include installing RethinkDB)
+Install Horizon: http://horizon.io/install/
+(this will include installing RethinkDB)
 
-  - Download the REALZ source code:
+Download the REALZ source code:
 
     git clone https://github.com/miquael/REALZ.git
 
-  - Move into into REALZ:
+Move into into REALZ:
 
     cd REALZ
 
-  - Start Horizon server:
+Start Horizon server:
 
     hz serve --dev
 
-  - Open http://127.0.0.1:8181
+Open http://127.0.0.1:8181
 
 
 ## Restarting
@@ -45,6 +45,6 @@ Then this, where [PID#] is the process PID (example, 8875):
 
     kill -9 [PID#]
 
-Then:
+Then, restart:
 
     hz serve --dev
