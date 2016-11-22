@@ -99,7 +99,6 @@
         <!-- CAM :::::::::::::::::::::: -->
         <a-entity   camera
                     position="0 1 0"
-                    kinematic-body
                     universal-controls
                     jump-ability
                     acceleration="100"
@@ -113,10 +112,10 @@
         </a-entity>
 
         <!-- UI ///////////////////////////////////////////////////////////// -->
-        <a-box position="-1.5 0.5 -3" rotation="0 45 0" opacity="1" color="#336699"
+        <a-box position="-2 0.5 -4" rotation="0 45 0" opacity="1" color="#336699"
                depth="0.25"
                height="1"
-               width="1">
+               width="2">
         </a-box>
 
         <!-- VOXY BOX CUBE -->
@@ -163,7 +162,10 @@
 
         </a-entity>
 
-
+        <!-- Text -->
+        <a-entity position="-0.75 0 -4" scale="2 2 1"
+                    bmfont-text="width: 200; lineHeight: 42; color: white; opacity: 0.6; letterSpacing: 15; text: REALZ">
+        </a-entity>
 
         <!-- Environment ///////////////////////////////////////////////////////-->
         <!-- Sky -->
@@ -178,8 +180,6 @@
 
                   <!-- Terrain Ground -->
                   <a-entity ground></a-entity>
-                  <!-- Grid Ground -->
-                  <a-grid static-body position="0 -1 0" depth="128" width="128"></a-grid>
         </a-entity>
 
     </a-scene>
