@@ -20,6 +20,9 @@
     <script src="https://rawgit.com/ngokevin/kframe/master/dist/kframe.min.js"></script>
     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
 
+    <script src="components/ground.js"></script>
+    <script src="shaders/skyGradient.js"></script>
+
     <!-- for menu overlay -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -59,7 +62,7 @@
   </head>
   <body>
 
-   <a-scene>
+    <a-scene>
 
        <!-- Asset Management System //////////////////////////////////////// -->
        <a-assets>
@@ -76,19 +79,19 @@
             </script>
 
             <!-- voxy box plane template -->
-                <script id="voxy-box-plane" type="text/nunjucks">
-                    <a-entity  class="box-plane"
-                        <a-entity template="src: #voxy-box" position="0 0 0"    data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="-1 0 0"   data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="-1 -1 0"  data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="-1 1 0"   data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="0 -1 0"   data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="0 1 0"    data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="1 -1 0"   data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="1 0 0"    data-hex="#FF6600"></a-entity>
-                        <a-entity template="src: #voxy-box" position="1 1 0"    data-hex="#FF6600"></a-entity>
-                    </a-entity>
-                </script>
+            <script id="voxy-box-plane" type="text/nunjucks">
+                <a-entity  class="box-plane"
+                    <a-entity template="src: #voxy-box" position="0 0 0"    data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 0 0"   data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 -1 0"  data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="-1 1 0"   data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="0 -1 0"   data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="0 1 0"    data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 -1 0"   data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 0 0"    data-hex="#FF6600"></a-entity>
+                    <a-entity template="src: #voxy-box" position="1 1 0"    data-hex="#FF6600"></a-entity>
+                </a-entity>
+            </script>
         </a-assets>
 
         <!-- SCENE ///////////////////////////////////////////////////////////// -->
@@ -103,10 +106,10 @@
                     easing="200"
                     fly="true">
 
-        <a-cursor id="cursor" color="#2E3A87">
-            <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
-            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
-        </a-cursor>
+                    <a-cursor id="cursor" color="#2E3A87">
+                        <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                        <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+                    </a-cursor>
         </a-entity>
 
         <!-- UI ///////////////////////////////////////////////////////////// -->
@@ -160,11 +163,24 @@
 
         </a-entity>
 
-        <!-- Sky -->
-        <a-sky color="#ECECEC"></a-sky>
 
-        <!-- Ground -->
-        <a-grid static-body position="0 -1 0" depth="128" width="128"></a-grid>
+
+        <!-- Environment ///////////////////////////////////////////////////////-->
+        <!-- Sky -->
+        <a-entity id="sky"
+                  geometry="primitive: sphere; radius: 65;"
+                  material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>
+
+                  <!-- Lights -->
+                  <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
+                  <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
+                  <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
+
+                  <!-- Terrain Ground -->
+                  <a-entity ground></a-entity>
+                  <!-- Grid Ground -->
+                  <a-grid static-body position="0 -1 0" depth="128" width="128"></a-grid>
+        </a-entity>
 
     </a-scene>
 
