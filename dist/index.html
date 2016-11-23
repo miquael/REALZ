@@ -64,7 +64,7 @@
 
     <a-scene>
 
-       <!-- Asset Management System //////////////////////////////////////// -->
+       <!-- Asset Management System //////////////////////////////////////////// -->
        <a-assets>
 
             <!-- ui color pad -->
@@ -149,7 +149,7 @@
 
         <!-- SCENE ///////////////////////////////////////////////////////////// -->
 
-        <!-- CAM :::::::::::::::::::::: -->
+        <!-- CAM -->
         <a-entity   camera
                     position="0 1 0"
                     universal-controls
@@ -164,27 +164,22 @@
                     </a-cursor>
         </a-entity>
 
-        <!-- UI ///////////////////////////////////////////////////////////// -->
-
-
-        <!-- UI controls and displays -->
+        <!-- UI controls and displays ////////////////////////////////////////// -->
 
         <!-- REALZ Text -->
         <a-entity position="-0.75 0.65 -3.5" scale="2 2 1"
             bmfont-text="width: 200; lineHeight: 42; color: white; opacity: 0.6; letterSpacing: 15; text: REALZ">
         </a-entity>
-
+        <!-- UI mod A -->
         <a-entity id="ui-mod-A" position="-2 0.5 -4" rotation="0 -35 0">
             <a-entity template="src: #ui-mod"></a-entity>
         </a-entity>
-
+        <!-- UI mod B -->
         <a-entity id="ui-mod-B" position="2 0.5 -4" rotation="0 35 0">
             <a-entity template="src: #ui-mod"></a-entity>
         </a-entity>
 
-
-
-
+        <!-- DATA SCULPTURE //////////////////////////////////////////////////// -->
 
         <!-- VOXY BOX CUBE -->
         <a-entity id="voxy-box-set" position="0 4 -7" scale="1 1 1">
@@ -230,24 +225,26 @@
 
         </a-entity>
 
-        <!-- Environment ///////////////////////////////////////////////////////-->
+        <!-- ENVIRONMENT /////////////////////////////////////////////////////// -->
+
         <!-- Sky -->
         <a-entity id="sky"
                   geometry="primitive: sphere; radius: 65;"
                   material="shader: skyGradient; colorTop: #353449; colorBottom: #BC483E; side: back"></a-entity>
 
-                  <!-- Lights -->
-                  <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
-                  <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
-                  <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
+          <!-- Lights -->
+          <a-entity light="type: point; color: #f4f4f4; intensity: 0.2; distance: 0" position="8 10 18"></a-entity>
+          <a-entity light="type: point; color: #f4f4f4; intensity: 0.6; distance: 0" position="-8 10 -18"></a-entity>
+          <a-entity light="type: ambient; color: #f4f4f4; intensity: 0.4;" position="-8 10 -18"></a-entity>
 
-                  <!-- Terrain Ground -->
-                  <a-entity ground></a-entity>
-        </a-entity>
+          <!-- Terrain Ground -->
+          <a-entity ground></a-entity>
+
 
     </a-scene>
 
     <!-- PAGE UI /////////////////////////////////////////////////////////////// -->
+
     <div id="bloc" class="intro-overlay">
           <h4>REALZ Horizon</h4>
           <p>This app ...</p>
